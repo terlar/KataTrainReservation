@@ -2,9 +2,9 @@ require_relative 'ticket_office'
 require_relative 'reservations'
 
 describe TicketOffice do
-  let(:booking_service) { :booking_reference_url }
   let(:train_data_service) { :train_data_service_url }
-  subject(:office) { TicketOffice.new(booking_service, train_data_service) }
+  let(:booking_reference_service) { :booking_reference_url }
+  subject(:office) { TicketOffice.new(train_data_service, booking_reference_service) }
 
   describe 'make_reservation(:request)' do
     let(:request) { stub(:request, train_id: 'express_2000', seat_count: 4) }

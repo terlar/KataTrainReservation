@@ -10,8 +10,9 @@ class TicketOffice
   end
 
   def make_reservation(request)
-    train_id = request.train_id
-    seats = train_data_service.seats_for_train(train_id)
+    train_id          = request.train_id
+    train_seats       = train_data_service.seats_for_train(train_id)
+    seats             = train_seats.first(request.seat_count)
     booking_reference = booking_reference_service.reference
 
     Reservation.new train_id, seats, booking_reference
