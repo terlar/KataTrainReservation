@@ -1,12 +1,13 @@
-require_relative 'ticket_office.rb'
+require_relative 'ticket_office'
+require_relative 'reservations'
 
 describe TicketOffice do
-  let(:booking_reference) { :booking_reference_url }
+  let(:booking_service) { :booking_reference_url }
   let(:train_data_service) { :train_data_service_url }
   subject(:office) { TicketOffice.new(booking_service, train_data_service) }
 
   describe 'make_reservation(:request)' do
-    let(:request) { stub(:request) }
+    let(:request) { stub(:request, train_id: 'express_2000', seat_count: 4) }
 
     it 'returns a reservation' do
       reservation = office.make_reservation(request)
@@ -17,7 +18,7 @@ describe TicketOffice do
       subject(:reservation) { office.make_reservation(request) }
 
       it 'has 4 seats' do
-        expect(reservation.seats).to have_size(4)
+        expect(reservation.seats).to have(4).items
       end
 
       it 'has a first seat of type coach A' do

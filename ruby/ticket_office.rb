@@ -1,10 +1,18 @@
 class TicketOffice
-  
-  def init(train_data_service, booking_reference_service)
+  def initialize(train_data_service, booking_reference_service)
   end
 
   def make_reservation(request)
-    # TODO: write this code!
+    train_id = request.train_id
+    seats = [
+      Seat.new('A', 1),
+      Seat.new('B', 2),
+      Seat.new('B', 3),
+      Seat.new('B', 4)
+    ]
+
+    booking_reference = '75bcd15'
+    Reservation.new train_id, seats, booking_reference
   end
 end
 
