@@ -1,5 +1,11 @@
+require 'net/http'
+require_relative 'reservations'
+
 class TrainDataService
+  attr_reader :base_url
+
   def initialize(url)
+    @base_url = url
   end
 
   def seats_for_train(train_id)
@@ -11,5 +17,12 @@ class TrainDataService
       Seat.new('B', 5),
       Seat.new('B', 6)
     ]
+  end
+
+  def build_seat(data)
+    Seat.new(
+      data[:coach],
+      data[:seat_number]
+    )
   end
 end
