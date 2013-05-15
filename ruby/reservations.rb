@@ -11,10 +11,12 @@ end
 class Reservation
   attr_reader :train_id
   attr_reader :seats
+  attr_reader :booking_reference
 
-  def initialize(train_id, seats)
+  def initialize(train_id, seats, booking_reference)
     @train_id = train_id
     @seats = seats
+    @booking_reference = booking_reference
   end
 end
 
